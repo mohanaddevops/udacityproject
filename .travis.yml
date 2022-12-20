@@ -1,4 +1,9 @@
+language: ruby
+
 services:
+  - docker
+
+before_install:
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
@@ -17,6 +22,7 @@ services:
 
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
+#!/bin/bash
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker push hanatareka/udagram-api-feed:v1
 - docker push hanatareka/udagram-api-user:v1
